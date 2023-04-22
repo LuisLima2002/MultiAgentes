@@ -5,6 +5,7 @@ from spade.message import Message
 import random
 import time
 from numpy import polyfit
+
 class Gerador(Agent):
     grau= random.randint(1,3)
     roots=[]
@@ -13,7 +14,7 @@ class Gerador(Agent):
         roots.append(random.randint(-1000,1000))
         y.append(0)
     roots.append(0)
-    y.append(random.randint(-100,100)+20)
+    y.append(random.randint(-100,100))
     coef=polyfit(roots,y,grau)
     roots.pop()
     class funcao_1grau(CyclicBehaviour):
@@ -105,4 +106,5 @@ try:
         time.sleep(1)
 except KeyboardInterrupt:
     print("Stopping...")
+gerador.web.start(hostname="127.0.0.1", port="10000")
 gerador.stop()
