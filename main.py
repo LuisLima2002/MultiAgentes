@@ -11,7 +11,7 @@ class Gerador(Agent):
     roots = []
     y = []
     for i in range(grau):
-        roots.append(random2.randint(-1000, 1000))
+        roots.append(random2.random()*random2.randint(-1000, 1000))
         y.append(0)
     roots.append(0)
     y.append(random2.randint(-100, 100))
@@ -49,7 +49,7 @@ class Gerador(Agent):
             if res:
                 x = float(res.body)
                 x = float(Gerador.coef[0]*x*x*x+Gerador.coef[1]*x*x+ Gerador.coef[2]*x + Gerador.coef[3])
-                print("Enviou para " + str(res.sender) + " = ", x)
+                print("Enviou para " + str(res.sender)[:10] + " = ", x)
                 msg = Message(to=str(res.sender)) 
                 msg.set_metadata("performative", "inform")  
                 msg.body = str((x))
@@ -90,7 +90,7 @@ class Gerador(Agent):
         self.add_behaviour(ft, template)
 
 
-gerador = Gerador("gerador@jabber.fr", "123456789")
+gerador = Gerador("lel2002@jix.im", "Dudu2002")
 gerador.start()
 print("Wait until user interrupts with ctrl+C")
 
